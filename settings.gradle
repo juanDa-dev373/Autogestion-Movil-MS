@@ -6,7 +6,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'Stats-ms'
+rootProject.name = 'Autogestion-Movil-ms'
 
 include ':app-service'
 include ':model'
@@ -16,11 +16,7 @@ project(':model').projectDir = file('./domain/model')
 project(':usecase').projectDir = file('./domain/usecase')
 include ':metrics'
 project(':metrics').projectDir = file('./infrastructure/helpers/metrics')
-include ':dynamo-db'
-project(':dynamo-db').projectDir = file('./infrastructure/driven-adapters/dynamo-db')
 include ':reactive-web'
 project(':reactive-web').projectDir = file('./infrastructure/entry-points/reactive-web')
-include ':async-event-bus'
-project(':async-event-bus').projectDir = file('./infrastructure/driven-adapters/async-event-bus')
 include ':jpa-repository'
 project(':jpa-repository').projectDir = file('./infrastructure/driven-adapters/jpa-repository')

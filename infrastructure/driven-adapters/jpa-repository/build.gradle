@@ -1,11 +1,14 @@
 dependencies {
     implementation project(':model')
+
+    implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.reactivecommons.utils:object-mapper-api:0.1.0'
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
-    testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'org.reactivecommons.utils:object-mapper-api:0.1.0'
+    implementation 'org.postgresql:postgresql:42.7.7'
+    implementation 'org.flywaydb:flyway-core:11.10.3'
 
-    runtimeOnly 'org.postgresql:postgresql'
+    testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.reactivecommons.utils:object-mapper:0.1.0'
 }

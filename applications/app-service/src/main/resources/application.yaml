@@ -2,41 +2,34 @@ server:
   port: 8080
 spring:
   application:
-    name: "Stats-ms"
+    name: "Autogestion-Movil-ms"
   devtools:
     add-properties: false
   profiles:
     include: "local"
-#  jpa:
-#    databasePlatform: "org.hibernate.dialect.PostgreSQLDialect"
-#    hibernate:
-#      ddl-auto: "update"
-#    show-sql: true
-#    properties:
-#      hibernate:
-#        default_schema: "schema_tickets"
-#  sql:
-#    init:
-#      mode: "always"
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        default_schema: autogestion_schema
+  sql:
+    init:
+      mode: "always"
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
   datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/autogestion_db?currentSchema=autogestion_schema
     username: postgres
     password: postgres
-    driverClassName: org.postgresql.Driver
-    flyway:
-      enabled: true
-      schemas: autogestion_schema
-      default-schema: autogestion_schema
-      locations: classpath:db/migration
-      skip-default-callbacks: true
-      ignore-missing-migrations: true
-      fail-on-unsupported-database: false
-    jpa:
-      databasePlatform: org.hibernate.dialect.PostgreSQLDialect
-      hibernate:
-        ddl-auto: update
-      show-sql: true
-    hikari:
-      jdbc-url: jdbc:postgresql://localhost:5433/autogestion_db?currentSchema=autogestion_schema
 
   rabbitmq:
     host: "localhost"
@@ -63,4 +56,11 @@ aws:
   region: "us-east-1"
   dynamodb:
     endpoint: "http://localhost:8000"
+jwt:
+  secret: "secretsecretsecretsecretsecretsecretsecretsecret"
+  expiration: 24
+
+logging:
+  level:
+    org.flywaydb.core: DEBUG
 
