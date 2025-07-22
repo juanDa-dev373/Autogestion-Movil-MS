@@ -1,0 +1,66 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: "Stats-ms"
+  devtools:
+    add-properties: false
+  profiles:
+    include: "local"
+#  jpa:
+#    databasePlatform: "org.hibernate.dialect.PostgreSQLDialect"
+#    hibernate:
+#      ddl-auto: "update"
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        default_schema: "schema_tickets"
+#  sql:
+#    init:
+#      mode: "always"
+  datasource:
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+    flyway:
+      enabled: true
+      schemas: autogestion_schema
+      default-schema: autogestion_schema
+      locations: classpath:db/migration
+      skip-default-callbacks: true
+      ignore-missing-migrations: true
+      fail-on-unsupported-database: false
+    jpa:
+      databasePlatform: org.hibernate.dialect.PostgreSQLDialect
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+    hikari:
+      jdbc-url: jdbc:postgresql://localhost:5433/autogestion_db?currentSchema=autogestion_schema
+
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  server:
+    port: 8082
+cors:
+  allowed-origins: "http://localhost:4200,http://localhost:8080"
+springdoc:
+  use-management-port: true
+aws:
+  region: "us-east-1"
+  dynamodb:
+    endpoint: "http://localhost:8000"
+
