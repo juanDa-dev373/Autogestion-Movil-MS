@@ -3,6 +3,7 @@ package co.com.seti.api.user;
 import co.com.seti.api.user.response.LoginResponse;
 import co.com.seti.api.user.response.UserDetail;
 import co.com.seti.api.user.requests.LoginRequest;
+import co.com.seti.model.bill.Bill;
 import co.com.seti.model.plan.Plan;
 import co.com.seti.model.usage.response.UsageResponse;
 import co.com.seti.model.user.User;
@@ -13,12 +14,10 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -89,6 +88,18 @@ public class UserController {
     public ResponseEntity<UsageResponse> getUsage(@PathVariable("id") Long id) throws Exception {
         return ResponseEntity.ok(
                 userUseCase.findUsageByIdUser(id)
+        );
+    }
+
+    @GetMapping("/{id}/bills")
+    @SecurityRequirement(name = "bearerAuth")
+    public ResponseEntity<List<Bill>> getBills(@PathVariable("id") Long id,
+                                               @RequestParam("startDate") LocalDate startDate,
+                                               @RequestParam("endDate") LocalDate endDate
+
+    ) throws Exception{
+        return ResponseEntity.ok(
+                userUseCase.findBillByIdUserAndStartDateAndEndDate(id, startDate, endDate)
         );
     }
 }

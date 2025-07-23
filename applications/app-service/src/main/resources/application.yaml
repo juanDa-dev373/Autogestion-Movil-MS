@@ -28,7 +28,7 @@ spring:
 
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/autogestion_db?currentSchema=autogestion_schema
+    url: jdbc:postgresql://localhost:5433/autogestion_db?currentSchema=autogestion_schema
     username: postgres
     password: root
 

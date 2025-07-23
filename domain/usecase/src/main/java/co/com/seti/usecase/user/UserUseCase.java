@@ -1,5 +1,7 @@
 package co.com.seti.usecase.user;
 
+import co.com.seti.model.bill.Bill;
+import co.com.seti.model.bill.gateway.BillGateway;
 import co.com.seti.model.common.exception.CodeError;
 import co.com.seti.model.common.exception.ErrorException;
 import co.com.seti.model.plan.Plan;
@@ -12,6 +14,9 @@ import co.com.seti.model.user.gateway.UserGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import static java.util.Objects.isNull;
 
 @Slf4j
@@ -21,6 +26,7 @@ public class UserUseCase {
     private final UserGateway userGateway;
     private final PlanGateway planGateway;
     private final UsageGateway usageGateway;
+    private final BillGateway billGateway;
 
     public User findUserById(Long id) throws ErrorException {
         log.info("Buscando usuario con ID: {}", id);
@@ -66,6 +72,12 @@ public class UserUseCase {
                 .smsTotal(plan.getSms())
                 .smsUsed(usage.getSms())
                 .build();
+    }
+
+    public List<Bill> findBillByIdUserAndStartDateAndEndDate(Long id, LocalDate startDate, LocalDate endDate) throws ErrorException {
+        log.info("Buscando facturas con ID: {}", id);
+        return billGateway.findAllBillsByIdUserAndDate(id, startDate, endDate);
+
     }
 
 }
