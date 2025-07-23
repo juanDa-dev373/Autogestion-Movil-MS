@@ -6,7 +6,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'Autogestion-Movil-ms'
+rootProject.name = 'Autogestion-movil-ms'
 
 include ':app-service'
 include ':model'
@@ -14,9 +14,9 @@ include ':usecase'
 project(':app-service').projectDir = file('./applications/app-service')
 project(':model').projectDir = file('./domain/model')
 project(':usecase').projectDir = file('./domain/usecase')
-include ':metrics'
-project(':metrics').projectDir = file('./infrastructure/helpers/metrics')
-include ':reactive-web'
-project(':reactive-web').projectDir = file('./infrastructure/entry-points/reactive-web')
+include ':api-rest'
+project(':api-rest').projectDir = file('./infrastructure/entry-points/api-rest')
 include ':jpa-repository'
 project(':jpa-repository').projectDir = file('./infrastructure/driven-adapters/jpa-repository')
+include ':helper'
+project(':helper').projectDir = file('./infrastructure/helpers/helper')

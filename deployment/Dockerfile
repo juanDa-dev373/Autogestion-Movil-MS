@@ -12,7 +12,7 @@ RUN mkdir -p /cache && \
     chown -R appuser:appgroup /app /cache
 
 # Copiar el archivo JAR a la ubicación de trabajo
-COPY applications/app-service/build/libs/Stats-ms.jar /app/Stats-ms.jar
+COPY applications/app-service/build/libs/Autogestion-movil-ms.jar /app/Autogestion-movil-ms.jar
 
 # Configurar las opciones de la JVM (eliminando -Xshareclasses)
 ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=70 -Djava.security.egd=file:/dev/./urandom"
@@ -24,4 +24,4 @@ USER appuser
 EXPOSE 8080
 
 # Definir el punto de entrada de la aplicación
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar /app/Stats-ms.jar" ]
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar /app/Autogestion-movil-ms.jar" ]
