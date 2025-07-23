@@ -31,22 +31,5 @@ services:
 #    depends_on:
 #      - postgres
 
-#  dynamodb-local:
-#    image: amazon/dynamodb-local
-#    ports:
-#      - "8000:8000"
-  rabbitmq:
-    image: rabbitmq:3-management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-#    Prueba Técnica - Desarrollador Java (Nivel Middle/Senior)
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-
-volumes:
-  localstack_data:
-  rabbitmq_data:
 #  postgres_data:
 #    driver: local

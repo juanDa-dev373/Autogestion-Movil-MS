@@ -3,8 +3,6 @@ server:
 spring:
   application:
     name: "Autogestion-Movil-ms"
-  devtools:
-    add-properties: false
   profiles:
     include: "local"
   jpa:
@@ -31,12 +29,6 @@ spring:
     username: postgres
     password: postgres
 
-  rabbitmq:
-    host: "localhost"
-    port: 5672
-    username: guest
-    password: guest
-
 management:
   endpoints:
     web:
@@ -52,10 +44,6 @@ cors:
   allowed-origins: "http://localhost:4200,http://localhost:8080"
 springdoc:
   use-management-port: true
-aws:
-  region: "us-east-1"
-  dynamodb:
-    endpoint: "http://localhost:8000"
 jwt:
   secret: "secretsecretsecretsecretsecretsecretsecretsecret"
   expiration: 24
